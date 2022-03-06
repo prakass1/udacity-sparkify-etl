@@ -153,7 +153,7 @@ def process_log_file(cur, filepath):
         except Exception as e:
             print(e)
             print(list(row))
-            break
+            continue
 
 
 def process_data(cur, conn, filepath, func):
@@ -179,7 +179,7 @@ def main():
     conn = psycopg2.connect(
         "host=127.0.0.1 dbname=sparkifydb user=student password=student"
     )
-    # Need to avoid on violations
+    # Avoiding not being saved while there is an exception.
     conn.set_session(autocommit=True)
     cur = conn.cursor()
 
