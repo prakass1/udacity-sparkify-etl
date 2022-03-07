@@ -1,7 +1,7 @@
 # Udacity Data Engineer Nanodegree Project-1
 
 ## Project Description: 
-Sparify is an analytics company who is interested with understanding about the songs users are interested in listening to. At the present state, this is hard since the data for the company resides in logs which is in JSON format and querying it is hard. Hence, they want a Data Engineer to envision a solution to create database schema, tables and create an etl pipeline to allow for them to query data. 
+Sparkify is an analytics company who is interested with understanding about the songs users are interested in listening to. At the present state, this is hard since the data for the company resides in logs which is in JSON format and querying it is hard. Hence, they want a Data Engineer to envision a solution to create database schema, tables and create an etl pipeline to allow for them to query data. 
 
 ## Goals:
 1. To be able to create the data schema adhering to all the requirements.
