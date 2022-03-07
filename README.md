@@ -152,15 +152,15 @@ This query is written to perform the matching with song_data and log_data. The r
 ```
 
 ## How to run the the project:
-1. Clone the project. `https://github.com/prakass1/udacity-sparify-etl.git` and change directory into the project directory `cd udacity-sparify-etl`.
-2. Create a python environment `python -m venv .venv` and activate it with `source .venv/bin/activate`.
+1. Clone the project. `https://github.com/prakass1/udacity-sparkify-etl.git` and change directory into the project directory `cd udacity-sparkify-etl`.
+2. Create a python environment `python3 -m venv .venv` and activate it with `source .venv/bin/activate`.
 3. Run the requirements for the project `pip install -r requirements.txt`
 4. Assuming docker and docker-compose is setup. The postgres database container can be brought up with `docker-compose up -d postgres_db`. Also, adminer is setup to lookup database and tables. Run `docker-compose -d adminer`.
 5. Check if the connections are in place using the adminer interface. Login to adminer at `http://localhost:9080`. Then add the following configurations in the interface: The username and password is `student`.  
 <img src="assests/postgres_adminer.png" width=250 height=250>
 6. Once after `create_tables.py` and `etl.py` is executed the database and tables with data should be populated and can be checked by choosing the DB as `sparkifydb``on the left side of the adminer interface.
 7. To run the `create_tables.py` on the terminal run `python3 create_tables.py`.
-8. To run the `etl.py` on the terminal run `python3 etl.py`. The etl.py has a function write_duplicate_records() which writes the duplicate entries per run in the `duplicate_records.txt` for the auditing purposes.
+8. To run the `etl.py` on the terminal run `python3 etl.py`. The etl.py has a function write_duplicate_records() which writes the duplicate entries per run in the `duplicate_records.txt` for the auditing purposes. Please note that exception is printed so you might see `duplicate key error` message. That is done only to notify with the pipeline run and is not an error.
 
 ## Analytical queries of interest  
 In the test.ipynb some of the interesting analytics questions are answered through SQL queries. Below the results are shown:  
