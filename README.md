@@ -162,7 +162,54 @@ This query is written to perform the matching with song_data and log_data. The r
 7. To run the `create_tables.py` on the terminal run `python3 create_tables.py`.
 8. To run the `etl.py` on the terminal run `python3 etl.py`. The etl.py has a function write_duplicate_records() which writes the duplicate entries per run in the `duplicate_records.txt` for the auditing purposes.
 
-## Analytical queries of interest
+## Analytical queries of interest  
+In the test.ipynb some of the interesting analytics questions are answered through SQL queries. Below the results are shown:  
 
+1. What are the current distribution of users using the app?  
+   ```
+   SELECT users.gender, COUNT(*) as counts FROM users GROUP BY users.gender;
+   ```
+   ```
+   |gender|counts|
+   | M    |  41  |
+   | F    |  55  |
+   ```
 
-## Extensions
+From this, it can be seen that female users are using the application and overall there are not major difference in the number. However, the data under consideration is only a subset.  
+
+2. How many paid users are using the application based on the location ordered in the descending order.
+   ```
+   SELECT songplays.location, COUNT(songplays.level) as counts FROM songplays WHERE songplays.level = 'paid' GROUP BY songplays.location ORDER BY counts DESC;
+   ```
+   ```
+   |location|counts|
+   |San Francisco-Oakland-Hayward, CA|650|
+   |Portland-South Portland, ME|648|
+   |Lansing-East Lansing, MI|557|
+   |Chicago-Naperville-Elgin, IL-IN-WI|462|
+   |Atlanta-Sandy Springs-Roswell, GA|428|
+   |Waterloo-Cedar Falls, IA|397|
+   |Lake Havasu City-Kingman, AZ|321|
+   ```
+
+3. To help marketting the app better, the team is interested to know which devices are mostly using the app.
+   ```
+   SELECT 'Windows' as os, COUNT(*) FROM songplays WHERE songplays.user_agent LIKE '%Windows%' UNION SELECT 'Mac' as os, COUNT(*) FROM songplays WHERE songplays.user_agent LIKE '%Mac%' UNION SELECT 'Linux' as os, COUNT(*) FROM songplays WHERE songplays.user_agent LIKE '%Linux%';
+   ```
+   ```
+     |os|count|
+     |Linux|1153|
+     |Mac|3239|
+     |Windows|2428|
+   ```
+
+It can be noticed that the requests are high from people using Mac. It is interesting to see that there quite some linux users as well.  
+
+4. The team is interested to know how many users listen to the songs in the night time.
+   ```
+      SELECT count(*) as midnight_listeners FROM songplays JOIN time ON songplays.start_time = time.start_time where time.hour >= 0 and time.hour <= 4;
+   ```
+   ```
+   |midnight_listeners|
+   |671|
+   ```

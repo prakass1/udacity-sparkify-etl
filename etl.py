@@ -157,7 +157,16 @@ def process_log_file(cur, filepath):
 
 
 def process_data(cur, conn, filepath, func):
-    # get all files matching extension from directory
+    """The function iterates to the provided data path in-depth meaning
+    it will search through the sub directories and obtain the absolute path
+    from that using glob. Each of such locations are added into a global list
+    The global list is iterated to perform processing of function (func) parameter.
+    Args:
+        cur (object): The postgres connection cursor
+        conn (object): The postgres connection
+        filepath (str): The data path. In our case the data/song_data or data/log_data
+        func (object): The function object reference itself is provided and invoked during the processing.
+    """
     all_files = []
     for root, dirs, files in os.walk(filepath):
         files = glob.glob(os.path.join(root, "*.json"))
@@ -176,6 +185,9 @@ def process_data(cur, conn, filepath, func):
 
 
 def main():
+    """
+    The main wrapper function which wraps the entire pipeline.
+    """
     conn = psycopg2.connect(
         "host=127.0.0.1 dbname=sparkifydb user=student password=student"
     )
