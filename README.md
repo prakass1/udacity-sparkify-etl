@@ -152,7 +152,7 @@ This query is written to perform the matching with song_data and log_data. The r
 ```
 
 ## How to run the the project:
-1. Clone the project. `https://github.com/prakass1/udacity-sparkify-etl.git` and change directory into the project directory `cd udacity-sparkify-etl`.
+1. Extract the provided zip file and change directory into the project directory `cd udacity-sparkify-etl`.
 2. Create a python environment `python3 -m venv .venv` and activate it with `source .venv/bin/activate`.
 3. Run the requirements for the project `pip install -r requirements.txt`
 4. Assuming docker and docker-compose is setup. The postgres database container can be brought up with `docker-compose up -d postgres_db`. Also, adminer is setup to lookup database and tables. Run `docker-compose -d adminer`.
